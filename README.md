@@ -1,10 +1,10 @@
 # anirbanroychowdhury-Lano
 Submission for Job Application at Lano.
 
-Candidate Name: Anirban Roy Chowdhury
-Email: anirbanroychowdhury10@gmail.com
-Phone Number: 0435507775
-Website:https://anirbanroychowdhury.github.io/
+Candidate Name: Anirban Roy Chowdhury  
+Email: anirbanroychowdhury10@gmail.com  
+Phone Number: 0435507775  
+Website:https://anirbanroychowdhury.github.io/  
 
 This repo contains both the code for Frontend and Backend. 
 
