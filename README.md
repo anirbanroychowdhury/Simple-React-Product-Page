@@ -22,6 +22,6 @@ Setting up Backend:
 2. Execute the command "npm install" to download all the package dependencies.
 3. After the npm modules are installed, you can open a powershell instance and execute the command "node index.js" to launch your backend.
 
-Makesure that your backend is running on "https://localhost:3000" as this is hardcoded as the API to fetech the product information in the frontend. Your frontend can run on any other port aside from this one.
+Makesure that your backend is running on "https://localhost:3000" as this is hardcoded as the API to fetch the product information in the frontend. Your frontend can run on any other port aside from this one.
 
 PS: If you launch your frontend after making sure that your backend is up, node will automatically ask you to switch to a differnt port.
