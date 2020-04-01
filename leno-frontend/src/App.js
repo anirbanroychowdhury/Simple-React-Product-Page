@@ -57,12 +57,29 @@ class App extends React.Component {
       }
     })
   }
+
+  getProductListComponenet(productList){
+    var temp = [];    
+    if(productList.length>0){
+      productList.map((item,key) => {
+        temp.push(<SimpleCard  {...item}/>);
+      })
+      return temp;
+    }else{
+      return(
+        <div>
+          <h1>"Data not being fetched, restart backend server"</h1>
+        </div>
+      );
+    }
+  }
   
   render(){
-    var ProductList = this.state.productList.map((item,key)=> {
-      return <SimpleCard  {...item}/>
-    });
-   
+    // var ProductList = this.state.productList.map((item,key)=> {
+    //   return <SimpleCard  {...item}/>
+    // });
+    var ProductList = this.getProductListComponenet(this.state.productList);
+    console.log(ProductList);
     return(
      <div id="parent">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
