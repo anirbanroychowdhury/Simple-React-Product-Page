@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import  SimpleCard  from './item-card';
-import CardDeck from 'react-bootstrap/CardDeck';
 import Navbar from 'react-bootstrap/Navbar'
 
 
@@ -12,7 +11,6 @@ class App extends React.Component {
     this.state = {
       productList: [],
       query: '',
-
     };
     this.handleEnterButton = this.handleEnterButton.bind(this);
     this.handleInputSearchBar = this.handleInputSearchBar.bind(this);
@@ -22,7 +20,7 @@ class App extends React.Component {
     this.getProductDataList();
   }
 
-  getProductDataList = () => {
+  getProductDataList() {
     fetch('http://localhost:3000/products').then(res => res.json()).then((data) => {
       this.setState({productList: data})
     }).catch(console.log)
@@ -60,26 +58,28 @@ class App extends React.Component {
 
   getProductListComponenet(productList){
     var temp = [];    
-    if(productList.length>0){
+    // console.log(productList);
+    if(productList.length>0 && productList){
       productList.map((item,key) => {
+        console.log(item['name']);
+        // if(item['name'] === "monitor"){
+        //   item['img'] = "./monitor.jpg";
+        // }
+        item['img'] = "./monitor.jpg";
         temp.push(<SimpleCard  {...item}/>);
       })
-      return temp;
     }else{
-      return(
-        <div>
-          <h1>"Data not being fetched, restart backend server"</h1>
-        </div>
+      temp.push(
+      <div>
+        <h1>"Data not being fetched, restart backend server"</h1>
+      </div>
       );
     }
+    return temp;
   }
   
   render(){
-    // var ProductList = this.state.productList.map((item,key)=> {
-    //   return <SimpleCard  {...item}/>
-    // });
     var ProductList = this.getProductListComponenet(this.state.productList);
-    console.log(ProductList);
     return(
      <div id="parent">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -92,8 +92,7 @@ class App extends React.Component {
         <div className="search">
           <label className="productName" style={{color:'white'}}>Product Name:</label>
           <div className="wrapper">
-             <input type="text" id="fname" name="fname" onChange = {this.handleInputSearchBar} onKeyDown={this.handleEnterButton}/><br></br>
-             <i className="fas fa-search"></i>
+             <input placeholder="Enter product name" type="text" id="fname" name="fname" onChange = {this.handleInputSearchBar} onKeyDown={this.handleEnterButton}/><br></br>
           </div>
         </div>
         <div className="productList" >
@@ -110,7 +109,7 @@ function NavBarItem(props){
       <Navbar.Brand href="#home">
     <img
       alt=""
-      src="/logo.svg"
+      src="/src/logo.svg"
       width="30"
       height="30"
       className="d-inline-block align-top"
@@ -122,3 +121,6 @@ function NavBarItem(props){
 }
 
 export default App;
+ 
+// TODO:
+// Add images to cards
