@@ -7,12 +7,14 @@ import HeadsetImg from './assets/headset.jpg'
 import MouseImg from './assets/mouse.jpg'
 import StoveImg from './assets/stove.jpg'
 
+// Simple Card class used to display an item lisiting
 class SimpleCard extends React.Component {
   constructor(props){
     super(props);
     this.getImage = this.getImage.bind(this);
     
   }
+  // Returns the image of the product
   getImage=(param)=> {
     switch(param){
       case 'monitor':
@@ -34,7 +36,7 @@ class SimpleCard extends React.Component {
     render(){
       return(
         <Card bg="dark" text="white" style={{ width: '18rem',margin:'10px'}}>
-                <Card.Img variant="top"  style={{width:'inherit' ,height:'15rem'}} src={this.getImage(String(this.props.name).toLowerCase())}/>
+                <Card.Img variant="top" style={{width:'17rem' ,height:'15rem',margin:'5px auto'}} src={this.getImage(String(this.props.name).toLowerCase())}/>
                 <Card.Body>
                   <Card.Title>{this.props.name}</Card.Title>
                   <Card.Text>

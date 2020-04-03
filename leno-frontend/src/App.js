@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import  SimpleCard  from './item-card';
 import Navbar from 'react-bootstrap/Navbar'
+import { logDOM } from '@testing-library/react';
 
 
 class App extends React.Component {
@@ -16,16 +17,19 @@ class App extends React.Component {
     this.handleInputSearchBar = this.handleInputSearchBar.bind(this);
   }
 
+  //This function is called before teh app is displayed, and sets the state for the productList
   componentDidMount(){
     this.getProductDataList();
   }
 
+  //query data from backend server
   getProductDataList() {
     fetch('http://localhost:3000/products').then(res => res.json()).then((data) => {
       this.setState({productList: data})
     }).catch(console.log)
   }
 
+  //Explicitly handles the etner button on search bar
   handleEnterButton(e){
     var unsortedProdList = [];
     var sortedProdList = [];
@@ -44,6 +48,7 @@ class App extends React.Component {
    
   }
 
+  //Handles the query entered in the search bar
   handleInputSearchBar(e){
     this.setState({
       query:e.target.value
@@ -56,16 +61,12 @@ class App extends React.Component {
     })
   }
 
+  //Creates a list of Cards, According the the data received from backend.
   getProductListComponenet(productList){
     var temp = [];    
     // console.log(productList);
     if(productList.length>0 && productList){
       productList.map((item,key) => {
-        console.log(item['name']);
-        // if(item['name'] === "monitor"){
-        //   item['img'] = "./monitor.jpg";
-        // }
-        item['img'] = "./monitor.jpg";
         temp.push(<SimpleCard  {...item}/>);
       })
     }else{
@@ -98,18 +99,20 @@ class App extends React.Component {
         <div className="productList" >
           {ProductList}
         </div>
+        <FooterBar />
      </div>
     );
   }
 }
 
+//Renders The Nav Bar
 function NavBarItem(props){
   return(
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand href="#home">
     <img
       alt=""
-      src="/src/logo.svg"
+      src={require('./logo.svg')}
       width="30"
       height="30"
       className="d-inline-block align-top"
@@ -119,8 +122,76 @@ function NavBarItem(props){
 </Navbar>
   );
 }
+//Renders the Footer
+function FooterBar(props){
+  return(
+    <div className="footer">
+    <section></section>
+    <footer class="footer-distributed">
+    
+          <div class="footer-left">
+    
+            <h3>Company<span>logo</span></h3>
+    
+            <p class="footer-links">
+              <a href="#" class="link-1">Home</a>
+              
+              <a href="#">Blog</a>
+            
+              <a href="#">Pricing</a>
+            
+              <a href="#">About</a>
+              
+              <a href="#">Faq</a>
+              
+              <a href="#">Contact</a>
+            </p>
+    
+            <p class="footer-company-name">Company Name © 2015</p>
+          </div>
+    
+          <div class="footer-center">
+    
+            <div>
+              <i class="fa fa-map-marker"></i>
+              <p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
+            </div>
+    
+            <div>
+              <i class="fa fa-phone"></i>
+              <p>+1.555.555.5555</p>
+            </div>
+    
+            <div>
+              <i class="fa fa-envelope"></i>
+              <p><a href="mailto:support@company.com">support@company.com</a></p>
+            </div>
+    
+          </div>
+    
+          <div class="footer-right">
+    
+            <p class="footer-company-about">
+              <span>About the company</span>
+              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+            </p>
+    
+            <div class="footer-icons">
+    
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-linkedin"></i></a>
+              <a href="#"><i class="fa fa-github"></i></a>
+    
+            </div>
+    
+          </div>
+    
+        </footer>
+      
+    </div>
+  );
+}
 
 export default App;
  
-// TODO:
-// Add images to cards
